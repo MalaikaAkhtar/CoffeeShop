@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="CustomSearchViewTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorControlNormal">@android:color/white</item> <!-- Icon color -->
+        <item name="android:textColorHint">@android:color/white</item> <!-- Hint text color -->
+        <item name="android:textColor">@android:color/white</item> <!-- Search text color -->
+    </style>
+</resources>

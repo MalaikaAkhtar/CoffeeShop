@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".activity.DetailsActivity">
+    
+    <ImageView
+        android:id="@+id/backIV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:src="@drawable/ic_arrow_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/des" />
+
+    <TextView
+        android:id="@+id/detailTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/detail"
+        android:textSize="@dimen/_20sdp"
+        android:textStyle="bold"
+        android:layout_marginTop="@dimen/_30sdp"
+        android:layout_marginStart="@dimen/_80sdp"
+        app:layout_constraintStart_toEndOf="@id/backIV"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/favoriteIV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_favorite_border"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:padding="@dimen/_15sdp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/des" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardview"
+        android:layout_width="@dimen/_280sdp"
+        android:layout_height="@dimen/_180sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:cardCornerRadius="@dimen/_20sdp"
+        app:layout_constraintTop_toBottomOf="@id/detailTV">
+
+        <ImageView
+            android:id="@+id/itemDetailIV"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/logo"
+            android:scaleType="centerCrop"/>
+    </androidx.cardview.widget.CardView>
+    
+    <TextView
+        android:id="@+id/coffeNameTV"
+        android:layout_width="@dimen/_130sdp"
+        android:layout_height="wrap_content"
+        android:text="@string/coffee_name"
+        android:textStyle="bold"
+        android:textSize="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_22sdp"
+        android:layout_marginStart="@dimen/_15sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cardview"/>
+
+    <LinearLayout
+        android:layout_width="@dimen/_150sdp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_55sdp"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_marginEnd="@dimen/_10sdp"
+        app:layout_constraintStart_toEndOf="@id/coffeNameTV"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cardview"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:backgroundTint="@color/white"
+            android:src="@drawable/bike"
+            android:contentDescription="@string/des" />
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:src="@drawable/bean"
+            android:contentDescription="@string/des"/>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:src="@drawable/milk"
+            android:contentDescription="@string/des"/>
+        
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/desTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/description"
+        android:textStyle="bold"
+        android:textSize="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginStart="@dimen/_15sdp"
+        app:layout_constraintTop_toBottomOf="@id/coffeNameTV"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+
+        android:id="@+id/descriptionTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/description_text"
+        android:textSize="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginStart="@dimen/_15sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/desTV" />
+
+    <TextView
+        android:id="@+id/sizeTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/size"
+        android:textStyle="bold"
+        android:textSize="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginStart="@dimen/_15sdp"
+        app:layout_constraintTop_toBottomOf="@id/descriptionTV"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_marginHorizontal="@dimen/_15sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sizeTV">
+
+        <RadioButton
+            android:id="@+id/radioButtonSmall"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="wrap_content"
+            android:button="@null"
+            android:background="@drawable/radio_button_selector"
+            android:gravity="center"
+            android:text="@string/small"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="8dp"
+            android:textColor="@color/black" />
+
+        <RadioButton
+            android:id="@+id/radioButtonMedium"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="wrap_content"
+            android:button="@null"
+            android:background="@drawable/radio_button_selector"
+            android:gravity="center"
+            android:text="@string/medium"
+            android:checked="true"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="8dp"
+            android:textColor="@color/black" />
+
+        <RadioButton
+            android:id="@+id/radioButtonLarge"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="wrap_content"
+            android:button="@null"
+            android:background="@drawable/radio_button_selector"
+            android:gravity="center"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:text="@string/large"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="8dp"
+            android:textColor="@color/black" />
+
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/pricetag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/_15sdp"
+        android:text="@string/price"
+        android:textColor="@color/gray"
+        app:layout_constraintTop_toBottomOf="@id/radioGroup"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="@dimen/_17sdp"
+        android:layout_marginTop="@dimen/_30sdp"/>
+
+    <TextView
+        android:id="@+id/priceTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/_15sdp"
+        android:text="@string/rs_500"
+        android:textColor="@color/brown"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="@dimen/_15sdp"
+        app:layout_constraintTop_toBottomOf="@id/pricetag"/>
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buyNowButton"
+        android:layout_width="@dimen/_170sdp"
+        android:layout_height="wrap_content"
+        android:text="@string/buy_now"
+        android:padding="@dimen/_10sdp"
+        android:textSize="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_40sdp"
+        android:layout_marginEnd="@dimen/_20sdp"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@id/radioGroup"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@drawable/rounded_button" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

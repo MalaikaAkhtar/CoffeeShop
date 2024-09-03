@@ -1,0 +1,43 @@
+<resources>
+    <string name="app_name">Coffee Shop</string>
+    <string name="coffee">Fall in Love with Coffee in Blissful Delight!</string>
+    <string name="welcome">Welcome to our cozy coffee corner, where every cup is a delightful for you.</string>
+    <string name="get_started">Get Started</string>
+    <string name="coffee_shop">Coffee Shop</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="detail">Detail</string>
+    <string name="des">des</string>
+    <string name="coffee_name">Coffee Name</string>
+    <string name="description">Description</string>
+    <string name="description_text">description text</string>
+    <string name="size">Size</string>
+    <string name="small">S</string>
+    <string name="medium">M</string>
+    <string name="large">L</string>
+    <string name="price">Price</string>
+    <string name="rs_500">Rs.500</string>
+    <string name="buy_now">Buy Now</string>
+    <string name="search_here">Search here</string>
+    <string name="location">Location</string>
+    <string name="islamabad">Islamabad</string>
+    <string name="order">Order</string>
+    <string name="deliver">Deliver</string>
+    <string name="pick_up">Pick Up</string>
+    <string name="delivery_address">Delivery Address</string>
+    <string name="satellite_town_rawalpindi">Satellite Town, Rawalpindi</string>
+    <string name="house_no_267_d_block_satellite_town_rawalpindi">House no 267, D-Block Satellite Town, Rawalpindi</string>
+    <string name="edit_address">Edit Address</string>
+    <string name="add_note">Add Note</string>
+    <string name="hot_coffee">Hot Coffee</string>
+    <string name="cold_coffee">Cold Coffee</string>
+    <string name="decrement">-</string>
+    <string name="quantity">1</string>
+    <string name="increment">+</string>
+    <string name="payment_summary">Payment Summary</string>
+    <string name="rs_600">Rs.600</string>
+    <string name="delivery_fee">Delivery Fee</string>
+    <string name="cash_wallet">Cash/Wallet</string>
+    <string name="rs_100">Rs.100</string>
+    <string name="rs_700">Rs.700</string>
+</resources>

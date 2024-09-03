@@ -1,0 +1,173 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/container"
+    tools:context=".activity.HomeActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="bottom">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/coffee_shop"
+                android:layout_marginHorizontal="@dimen/_70sdp"
+                android:textStyle="bold"
+                android:textSize="@dimen/_20sdp"
+                android:textColor="@color/white"
+                android:textAlignment="center"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/location"
+                android:textSize="15sp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:textColor="@color/white"
+                android:fontFamily="sans-serif"
+                android:layout_marginBottom="4dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/islamabad"
+                android:textSize="16sp"
+                android:textColor="@android:color/white"
+                android:fontFamily="sans-serif-medium" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_10sdp">
+
+            <EditText
+                android:id="@+id/searchET"
+                android:layout_width="@dimen/_230sdp"
+                android:layout_height="wrap_content"
+                android:hint="@string/search_here"
+                android:textColorHint="@color/white"
+                android:inputType="text"
+                android:textColor="@color/white"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_20sdp"/>
+
+
+            <ImageView
+                android:id="@+id/searchIV"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_marginTop="@dimen/_25sdp"
+                android:src="@drawable/ic_search"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:background="@drawable/container" >
+
+        </View>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:background="@android:color/white" />
+
+    </LinearLayout>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="@dimen/_230sdp"
+        android:layout_height="@dimen/_100sdp"
+        android:layout_marginTop="@dimen/_190sdp"
+        app:cardCornerRadius="@dimen/_15sdp"
+        android:backgroundTint="@color/brown"
+        android:layout_marginStart="@dimen/_37sdp">
+
+    <ImageView
+        android:id="@+id/centerImageView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="des"
+        tools:src="@drawable/Banner"
+        android:src="@drawable/banner"
+        android:scaleType="centerCrop"
+        />
+    </androidx.cardview.widget.CardView>
+
+    <RadioGroup
+        android:id="@+id/radioGroupHome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/centerImageView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@drawable/radio_btn_order">
+
+        <RadioButton
+            android:id="@+id/rBHotCoffee"
+            android:layout_width="@dimen/_120sdp"
+            android:layout_height="wrap_content"
+            android:button="@null"
+            android:background="@drawable/radio_button_selector"
+            android:gravity="center"
+            android:text="@string/hot_coffee"
+            android:textSize="@dimen/_15sdp"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="8dp"
+            android:textColor="@color/black" />
+
+        <RadioButton
+            android:id="@+id/rbColdCoffee"
+            android:layout_width="@dimen/_120sdp"
+            android:layout_height="wrap_content"
+            android:button="@null"
+            android:background="@drawable/radio_button_selector"
+            android:gravity="center"
+            android:textSize="@dimen/_15sdp"
+            android:text="@string/cold_coffee"
+            android:checked="true"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="8dp"
+            android:textColor="@color/black" />
+    </RadioGroup>
+
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_300sdp"
+        android:layout_gravity="bottom"
+        android:layout_marginTop="@dimen/_20sdp"/>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_330sdp"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="2"
+        tools:listitem="@layout/coffee_items" />
+
+</FrameLayout>
