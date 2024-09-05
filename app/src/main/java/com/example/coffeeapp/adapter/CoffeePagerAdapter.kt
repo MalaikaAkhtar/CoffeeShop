@@ -1,12 +1,13 @@
 package com.example.coffeeapp.adapter
 
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.coffeeapp.fragment.ColdCoffeeFragment
+import com.example.coffeeapp.fragment.HomeFragment
 import com.example.coffeeapp.fragment.HotCoffeeFragment
+import com.example.coffeeapp.fragment.MapFragment
 
-class CoffeePagerAdapter(fragmentActivity: FragmentActivity) : FragmentStateAdapter(fragmentActivity) {
+class CoffeePagerAdapter(fragmentActivity: HomeFragment) : FragmentStateAdapter(fragmentActivity) {
     override fun getItemCount(): Int {
         return 2// no of tabs
     }

@@ -7,15 +7,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.GridLayout
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.coffeeapp.R
-import com.example.coffeeapp.activity.DetailsActivity
 import com.example.coffeeapp.adapter.CoffeeAdapter
 import com.example.coffeeapp.databinding.FragmentHotCoffeeBinding
 import com.example.coffeeapp.viewmodel.CoffeeViewModel
-
+import kotlinx.coroutines.launch
 
 class HotCoffeeFragment : Fragment() {
 
@@ -26,7 +24,7 @@ class HotCoffeeFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentHotCoffeeBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -36,27 +34,41 @@ class HotCoffeeFragment : Fragment() {
 
         coffeeAdapter = CoffeeAdapter(emptyList()) { selectedCoffee ->
 
-            Log.d("ColdCoffeeFragment", "Selected Coffee: Title = ${selectedCoffee.title}," +
-                    " Image = ${selectedCoffee.image}, Description = ${selectedCoffee.description}")
+            Log.d(
+                "ColdCoffeeFragment",
+                "Selected Coffee: Title = ${selectedCoffee.title}," +
+                        " Image = ${selectedCoffee.image}, Description = ${selectedCoffee.description}"
+            )
 
-            val intent = Intent(context, DetailsActivity::class.java).apply {
+            val intent = Intent(requireContext(), DetailFragment::class.java).apply {
                 putExtra("COFFEE_TITLE", selectedCoffee.title)
                 putExtra("COFFEE_IMAGE", selectedCoffee.image)
                 putExtra("COFFEE_DESCRIPTION", selectedCoffee.description)
             }
             startActivity(intent)
         }
+            binding.recyclerView.apply {
+                layoutManager = GridLayoutManager(context, 2)
+                adapter = coffeeAdapter
+            }
 
-        binding.recyclerView.apply {
-            layoutManager = GridLayoutManager(context,2)
-            adapter = coffeeAdapter
-        }
+            coffeeViewModel = ViewModelProvider(requireActivity())[CoffeeViewModel::class.java]
 
-        coffeeViewModel = ViewModelProvider(requireActivity())[CoffeeViewModel::class.java]
+            viewLifecycleOwner.lifecycleScope.launch {
+                coffeeViewModel.hotCoffeeList.collect { hotCoffeeList ->
+                    coffeeAdapter.updateCoffeeList(hotCoffeeList)
+                    binding.progressBar.visibility = View.GONE
+                }
+            }
 
-        coffeeViewModel.hotCoffeeList.observe(viewLifecycleOwner) { hotCoffeeList ->
-            coffeeAdapter.updateCoffeeList(hotCoffeeList)
-        }
+            viewLifecycleOwner.lifecycleScope.launch {
+                coffeeViewModel.isLoading.collect { isLoading ->
+                    if (isLoading) {
+                        binding.progressBar.visibility = View.VISIBLE
+                    } else {
+                        binding.progressBar.visibility = View.GONE
+                    }
+                }
+            }
     }
-
 }

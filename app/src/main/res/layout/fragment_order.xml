@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.OrderActivity">
+    tools:context=".fragment.OrderFragment">
 
     <ImageView
         android:id="@+id/backImageView"
@@ -175,7 +175,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/decrement"
-        android:layout_marginStart="@dimen/_35sdp"
+        android:layout_marginStart="@dimen/_45sdp"
         android:textSize="@dimen/_20sdp"
         android:layout_marginTop="@dimen/_24sdp"
         app:layout_constraintStart_toEndOf="@+id/coffeeName"
@@ -272,7 +272,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/deliveryFee"
         android:contentDescription="@string/des" />
-    
+
     <TextView
         android:id="@+id/cashTV"
         android:layout_width="wrap_content"
@@ -285,27 +285,31 @@
         app:layout_constraintStart_toEndOf="@id/walletIV"
         app:layout_constraintTop_toBottomOf="@id/deliveryFee"/>
 
-    <Spinner
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_70sdp"
-        android:layout_marginTop="@dimen/_35sdp"
-        app:layout_constraintStart_toEndOf="@id/cashTV"
-        app:layout_constraintTop_toBottomOf="@id/feeValue"/>
-    
     <TextView
-        android:id="@+id/totalCharges"
+        android:id="@+id/totalTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/rs_700"
+        android:text="@string/rs"
         android:textColor="@color/brown"
         android:textSize="@dimen/_12sdp"
         android:layout_marginStart="@dimen/_15sdp"
         app:layout_constraintTop_toBottomOf="@id/cashTV"
         app:layout_constraintStart_toEndOf="@id/walletIV"/>
 
+    <TextView
+        android:id="@+id/totalChargesTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/_400"
+        android:textColor="@color/brown"
+        android:textSize="@dimen/_12sdp"
+        app:layout_constraintStart_toEndOf="@+id/totalTV"
+        app:layout_constraintTop_toBottomOf="@+id/cashTV"
+        android:layout_marginStart="@dimen/_5sdp"/>
+
+
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/startBtn"
+        android:id="@+id/orderBtn"
         android:layout_width="match_parent"
         android:layout_height="@dimen/_45sdp"
         android:backgroundTint="@color/brown"
@@ -315,7 +319,7 @@
         android:layout_marginVertical="@dimen/_15sdp"
         android:layout_marginHorizontal="@dimen/_20sdp"
         android:background="@drawable/rounded_button"
-        app:layout_constraintTop_toBottomOf="@id/totalCharges"
+        app:layout_constraintTop_toBottomOf="@id/totalChargesTV"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

@@ -1,10 +1,11 @@
 package com.example.coffeeapp.activity
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
+import com.example.coffeeapp.R
 import com.example.coffeeapp.databinding.ActivityMainBinding
+import com.example.coffeeapp.fragment.HomeFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,8 +19,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.startBtn.setOnClickListener {
-            val intent = Intent(this@MainActivity, HomeActivity::class.java)
-            startActivity(intent)
+            val fragment = HomeFragment()
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, fragment)
+                .addToBackStack(null)
+                .commit()
         }
     }
 }

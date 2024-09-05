@@ -40,4 +40,7 @@
     <string name="cash_wallet">Cash/Wallet</string>
     <string name="rs_100">Rs.100</string>
     <string name="rs_700">Rs.700</string>
+    <string name="rs">Rs.</string>
+    <string name="_400">400</string>
+    <string name="google_map_api_key">AIzaSyATfjKyOCEFbyjA16HU-s7Y3fvV1v9Tb7I</string>
 </resources>
