@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navgraph"
+    app:startDestination="@id/dashboardFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.coffeeapp.fragment.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_coldCoffeeFragment"
+            app:destination="@id/coldCoffeeFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_hotCoffeeFragment"
+            app:destination="@id/hotCoffeeFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/coldCoffeeFragment"
+        android:name="com.example.coffeeapp.fragment.ColdCoffeeFragment"
+        android:label="Cold_Coffee_Fragment"
+        tools:layout="@layout/fragment_cold_coffee">
+
+        <action
+            android:id="@+id/action_coldCoffeeFragment_to_detailFragment"
+            app:destination="@+id/detailFragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/hotCoffeeFragment"
+        android:name="com.example.coffeeapp.fragment.HotCoffeeFragment"
+        android:label="Hot Coffee Fragment"
+        tools:layout="@layout/fragment_hot_coffee" >
+
+        <action
+            android:id="@+id/action_hotCoffeeFragment_to_detailFragment"
+            app:destination="@+id/detailFragment"/>
+
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.example.coffeeapp.fragment.DetailFragment"
+        android:label="Detail Fragment"
+        tools:layout="@layout/fragment_detail">
+
+        <argument
+            android:name="coffeeTitle"
+            app:argType="string" />
+        <argument
+            android:name="coffeeImage"
+            app:argType="string" />
+        <argument
+            android:name="coffeeDescription"
+            app:argType="string" />
+
+        <action
+            android:id="@+id/action_detailFragment_to_orderFragment"
+            app:destination="@id/orderFragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/orderFragment"
+        android:name="com.example.coffeeapp.fragment.OrderFragment"
+        android:label="Order Fragment"
+        tools:layout="@layout/fragment_order" >
+        <argument
+            android:name="coffeeTitle"
+            app:argType="string" />
+        <argument
+            android:name="coffeeImage"
+            app:argType="string" />
+        <argument
+            android:name="selected_Price"
+            app:argType="string"/>
+
+        <action
+            android:id="@+id/action_orderFragment_to_mapFragment"
+            app:destination="@id/mapFragment"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="com.example.coffeeapp.fragment.MapFragment"
+        android:label="Map Fragment"
+        tools:layout="@layout/fragment_map">
+    </fragment>
+    <fragment
+        android:id="@+id/dashboardFragment"
+        android:name="com.example.coffeeapp.DashboardFragment"
+        android:label="fragment_dashboard"
+        tools:layout="@layout/fragment_dashboard" >
+        <action
+            android:id="@+id/action_dashboardFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+
+
+</navigation>

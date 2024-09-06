@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.coffeeapp.constants.Constants
 import com.example.coffeeapp.databinding.FragmentOrderBinding
@@ -27,11 +29,13 @@ class OrderFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val coffeeTitle = arguments?.getString("COFFEE_TITLE")
-        val coffeeImage = arguments?.getString("COFFEE_IMAGE")
-        coffeePrice = arguments?.getString("SELECTED_PRICE")!!
+//        val args: OrderFragmentArgs by navArgs()
+//        val coffeeTitle = args.coffeeTitle
+//        val coffeeImage = args.coffeeImage
+//        coffeePrice = args.selectedPrice
+
         binding.apply {
-            coffeeName.text = coffeeTitle
+//            coffeeName.text = coffeeTitle
             feeValue.text= Constants.DELIVERY_FEE.toString()
             backImageView.setOnClickListener {
                 requireActivity().supportFragmentManager.popBackStack()
@@ -47,14 +51,13 @@ class OrderFragment : Fragment() {
                 }
             }
             orderBtn.setOnClickListener {
-                val intent = Intent(requireContext(), MapFragment :: class.java )
-                startActivity(intent)
+                findNavController().navigate("mapFragment")
             }
         }
-        Glide.with(this)
-            .load(coffeeImage)
-            .into(binding.coffeeImage)
-        setPrice(quantity)
+//        Glide.with(this)
+//            .load(coffeeImage)
+//            .into(binding.coffeeImage)
+//        setPrice(quantity)
     }
     private fun setPrice(itemQuantity: Int) {
         val totalPrice = (coffeePrice.toInt().times(itemQuantity))

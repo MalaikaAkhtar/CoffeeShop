@@ -8,68 +8,12 @@
     android:background="@color/black"
     tools:context=".activity.MainActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/nav_host_fragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/black">
-
-        <ImageView
-            android:id="@+id/coffee"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_350sdp"
-            android:src="@drawable/coffee"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:contentDescription="@string/des" />
-
-        <TextView
-            android:id="@+id/coffeeTV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/coffee"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:textAlignment="center"
-            android:textSize="@dimen/_25ssp"
-            android:padding="@dimen/_20sdp"
-            app:layout_constraintTop_toBottomOf="@id/coffee"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/welcomeTV"/>
-
-
-        <TextView
-            android:id="@+id/welcomeTV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/welcome"
-            android:textColor="@color/white"
-            android:textAlignment="center"
-            android:textSize="@dimen/_13sdp"
-            android:paddingHorizontal="@dimen/_25sdp"
-            app:layout_constraintTop_toBottomOf="@id/coffeeTV"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/startBtn"/>
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/startBtn"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_45sdp"
-            android:backgroundTint="@color/brown"
-            android:text="@string/get_started"
-            android:textSize="@dimen/_15sdp"
-            android:textColor="@color/white"
-            android:layout_marginVertical="@dimen/_15sdp"
-            android:layout_marginHorizontal="@dimen/_20sdp"
-            android:background="@drawable/rounded_button"
-            app:layout_constraintTop_toBottomOf="@id/welcomeTV"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
+        app:navGraph="@navigation/navgraph"
+        tools:context=".MainActivity"
+        />
 </FrameLayout>

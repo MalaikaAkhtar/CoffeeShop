@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.coffeeapp.R
 import com.example.coffeeapp.constants.Constants
@@ -26,18 +28,17 @@ class DetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        var title = ""
-        var image = ""
-        var description = ""
-        arguments?.let {
-          title = it.getString("COFFEE_TITLE").toString()
-         image = it.getString("COFFEE_IMAGE").toString()
-          description = it.getString("COFFEE_DESCRIPTION").toString()
+        val args: DetailFragmentArgs by navArgs()
+        val title = args.coffeeTitle
+        val image = args.coffeeImage
+        val description = args.coffeeDescription
 
+        binding.apply {
+            coffeNameTV.text = title
+            descriptionTV.text = description
+            Glide.with(this@DetailFragment).load(args.coffeeImage).into(itemDetailIV)
         }
-//        Glide.with(this)
-//            .load(coffeeImage)
-//            .into(binding.itemDetailIV)
+
         binding.apply {
             coffeNameTV.text = title
             descriptionTV.text = description
@@ -45,14 +46,14 @@ class DetailFragment : Fragment() {
             backIV.setOnClickListener {
                 requireActivity().supportFragmentManager.popBackStack()
             }
-//            buyNowButton.setOnClickListener {
-//                val intent = Intent(requireContext(), OrderFragment::class.java)
-//                intent.putExtra("COFFEE_TITLE", title)
-//                intent.putExtra("COFFEE_IMAGE", image)
-//                intent.putExtra("SELECTED_PRICE", binding.priceTV.text.toString()
-//                )
-//                startActivity(intent)
-//            }
+            buyNowButton.setOnClickListener {
+                val action = DetailFragmentDirections.actionDetailFragmentToOrderFragment(
+                    coffeeTitle = title,
+                    coffeeImage = image,
+                    selectedPrice = binding.priceTV.text.toString()
+                )
+                findNavController().navigate(action)
+            }
             priceTV.text = Constants.MEDIUM_PRICE.toString()
             radioGroup.setOnCheckedChangeListener { group, checkedId ->
                 when (checkedId) {
@@ -69,17 +70,5 @@ class DetailFragment : Fragment() {
             }
         }
     }
-
-    companion object {
-        fun newInstance(title: String, image: String, description: String): DetailFragment {
-            val fragment = DetailFragment()
-            val args = Bundle().apply {
-                putString("COFFEE_TITLE", title)
-                putString("COFFEE_IMAGE", image)
-                putString("COFFEE_DESCRIPTION", description)
-            }
-            fragment.arguments = args
-            return fragment
-        }
-    }
 }
+
