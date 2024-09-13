@@ -6,6 +6,16 @@
     app:startDestination="@id/dashboardFragment">
 
     <fragment
+        android:id="@+id/dashboardFragment"
+        android:name="com.example.coffeeapp.fragment.DashboardFragment"
+        android:label="fragment_dashboard"
+        tools:layout="@layout/fragment_dashboard" >
+        <action
+            android:id="@+id/action_dashboardFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+
+    <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.coffeeapp.fragment.HomeFragment"
         android:label="fragment_home"
@@ -91,15 +101,5 @@
         android:label="Map Fragment"
         tools:layout="@layout/fragment_map">
     </fragment>
-    <fragment
-        android:id="@+id/dashboardFragment"
-        android:name="com.example.coffeeapp.DashboardFragment"
-        android:label="fragment_dashboard"
-        tools:layout="@layout/fragment_dashboard" >
-        <action
-            android:id="@+id/action_dashboardFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
-    </fragment>
-
 
 </navigation>

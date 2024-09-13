@@ -8,7 +8,7 @@ import com.example.coffeeapp.fragment.HomeFragment
 import com.example.coffeeapp.fragment.HomeFragmentDirections
 import com.example.coffeeapp.fragment.HotCoffeeFragment
 
-class CoffeePagerAdapter(val fragmentActivity: HomeFragment) :
+class CoffeePagerAdapter(private val fragmentActivity: HomeFragment) :
     FragmentStateAdapter(fragmentActivity) {
     override fun getItemCount(): Int {
         return 2// no of tabs
@@ -16,14 +16,20 @@ class CoffeePagerAdapter(val fragmentActivity: HomeFragment) :
 
     override fun createFragment(position: Int): Fragment {
         return when (position) {
-            0 -> HotCoffeeFragment.instance {
-                fragmentActivity.findNavController()
-                    .navigate(HomeFragmentDirections.actionHomeFragmentToDetailFragment("","",""))
+            0 -> HotCoffeeFragment.newInstance { selectedCoffee ->
+                fragmentActivity.findNavController().navigate(
+                    HomeFragmentDirections.actionHomeFragmentToDetailFragment(
+                        selectedCoffee.title,
+                        selectedCoffee.image,
+                        selectedCoffee.description))
             }
 
-            1 -> ColdCoffeeFragment.instance {
+            1 -> ColdCoffeeFragment.newInstance { selectedCoffee ->
                 fragmentActivity.findNavController()
-                    .navigate(HomeFragmentDirections.actionHomeFragmentToDetailFragment("","",""))
+                    .navigate(HomeFragmentDirections.actionHomeFragmentToDetailFragment(
+                        selectedCoffee.title,
+                        selectedCoffee.image,
+                        selectedCoffee.description))
 
             }
 

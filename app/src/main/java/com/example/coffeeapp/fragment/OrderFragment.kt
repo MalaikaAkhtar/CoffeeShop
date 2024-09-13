@@ -51,7 +51,8 @@ class OrderFragment : Fragment() {
                 }
             }
             orderBtn.setOnClickListener {
-                findNavController().navigate("mapFragment")
+                val action = OrderFragmentDirections.actionOrderFragmentToMapFragment()
+                findNavController().navigate(action)
             }
         }
 //        Glide.with(this)

@@ -1,20 +1,16 @@
 package com.example.coffeeapp.fragment
 
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.Navigation
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.coffeeapp.R
 import com.example.coffeeapp.adapter.CoffeeAdapter
 import com.example.coffeeapp.databinding.FragmentHotCoffeeBinding
+import com.example.coffeeapp.dataclass.Coffee
 import com.example.coffeeapp.viewmodel.CoffeeViewModel
 import kotlinx.coroutines.launch
 
@@ -25,14 +21,13 @@ class HotCoffeeFragment : Fragment() {
     private lateinit var coffeeAdapter: CoffeeAdapter
 
     companion object {
-        private var onClick: () -> Unit = {}
-
-        fun instance(onClick: () -> Unit): HotCoffeeFragment {
-            this.onClick = onClick
-            return HotCoffeeFragment()
+        fun newInstance(onClick: (Coffee) -> Unit): HotCoffeeFragment {
+            val fragment = HotCoffeeFragment()
+            fragment.onClick = onClick
+            return fragment
         }
     }
-
+    private var onClick: (Coffee) -> Unit = {}
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -45,18 +40,7 @@ class HotCoffeeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         coffeeAdapter = CoffeeAdapter(emptyList()) { selectedCoffee ->
-            onClick.invoke()
-//            Log.d(
-//                "ColdCoffeeFragment",
-//                "Selected Coffee: Title = ${selectedCoffee.title}," +
-//                        " Image = ${selectedCoffee.image}, Description = ${selectedCoffee.description}"
-//            )
-//            val action = HotCoffeeFragmentDirections.actionHotCoffeeFragmentToDetailFragment(
-//                selectedCoffee.title,
-//                selectedCoffee.image,
-//                selectedCoffee.description
-//            )
-//            findNavController().navigate(action)
+            onClick.invoke(selectedCoffee)
 
         }
         binding.recyclerView.apply {

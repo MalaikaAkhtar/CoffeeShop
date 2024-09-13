@@ -42,6 +42,13 @@ class CoffeeAdapter(private var coffeeList: List<Coffee>,
 
     override fun getItemCount() = coffeeList.size
 
+    fun updateCoffeeList(newCoffeeList: List<Coffee>) {
+        coffeeList = newCoffeeList
+        notifyDataSetChanged()
+    }
+
+}
+
 //    override fun getFilter(): Filter {
 //        return object : Filter() {
 //            override fun performFiltering(constraint: CharSequence?): FilterResults {
@@ -64,10 +71,3 @@ class CoffeeAdapter(private var coffeeList: List<Coffee>,
 //            }
 //        }
 //    }
-
-    fun updateCoffeeList(newCoffeeList: List<Coffee>) {
-        coffeeList = newCoffeeList
-        notifyDataSetChanged()
-    }
-
-}

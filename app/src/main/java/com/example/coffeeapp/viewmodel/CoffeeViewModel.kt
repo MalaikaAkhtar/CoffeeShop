@@ -2,8 +2,6 @@ package com.example.coffeeapp.viewmodel
 
 import android.content.ContentValues.TAG
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.coffeeapp.dataclass.Coffee
@@ -68,17 +66,14 @@ class CoffeeViewModel : ViewModel() {
         }
     }
 
-    fun filterCoffee(query: String) {
+    fun filterCoffeeList(query: String, isHotCoffee: Boolean) {
         viewModelScope.launch {
-            val hotList = hotCoffeeList.value
-            val coldList = coldCoffeeList.value
-
-            val filteredHotList = hotList.filter { it.title.contains(query, ignoreCase = true) }
-            val filteredColdList = coldList.filter { it.title.contains(query, ignoreCase = true) }
-
-            val combinedFilteredList = filteredHotList + filteredColdList
-            _filterCoffeeList.value = combinedFilteredList
+            val filteredList = if (isHotCoffee) {
+                _hotCoffeeList.value.filter { it.title.contains(query, ignoreCase = true) }
+            } else {
+                _coldCoffeeList.value.filter { it.title.contains(query, ignoreCase = true) }
+            }
+            _filterCoffeeList.value = filteredList
         }
     }
-
 }
