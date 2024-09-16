@@ -6,4 +6,5 @@
         <item name="android:textColorHint">@android:color/white</item> <!-- Hint text color -->
         <item name="android:textColor">@android:color/white</item> <!-- Search text color -->
     </style>
+
 </resources>

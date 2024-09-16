@@ -14,8 +14,10 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 
+
 class MapFragment : Fragment(), OnMapReadyCallback {
     private lateinit var binding: FragmentMapBinding
+    private var googleMap : GoogleMap ?= null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,10 +34,11 @@ class MapFragment : Fragment(), OnMapReadyCallback {
         mapFragment.getMapAsync(this)
     }
 
-    override fun onMapReady(p0: GoogleMap) {
-        // Add a marker in Sydney and move the camera
-        val sydney = LatLng(-34.0, 151.0)
-        p0.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        p0.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+    override fun onMapReady(map: GoogleMap) {
+        googleMap = map
+        val rawalpindi = LatLng(33.6412, 73.0656)
+        googleMap!!.addMarker(MarkerOptions().position(rawalpindi).title("Marker in Satellite Town"))
+        googleMap!!.moveCamera(CameraUpdateFactory.newLatLngZoom(rawalpindi, 15f))
+
     }
 }

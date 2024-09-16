@@ -14,8 +14,6 @@ class CoffeeAdapter(private var coffeeList: List<Coffee>,
                     private val onItemClick: (Coffee) -> Unit)
     : RecyclerView.Adapter<CoffeeAdapter.CoffeeViewHolder>() {
 
-  //  private var filteredCoffeeList: List<Coffee> = coffeeList
-
     inner class CoffeeViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val coffeeImage: ImageView = view.findViewById(R.id.itemIV)
         val coffeeName: TextView = view.findViewById(R.id.coffeeItemTV)
@@ -48,26 +46,3 @@ class CoffeeAdapter(private var coffeeList: List<Coffee>,
     }
 
 }
-
-//    override fun getFilter(): Filter {
-//        return object : Filter() {
-//            override fun performFiltering(constraint: CharSequence?): FilterResults {
-//                val query = constraint?.toString()?.lowercase()?.trim()
-//                val filteredList = if (query.isNullOrEmpty()) {
-//                    coffeeList
-//                } else {
-//                    coffeeList.filter {
-//                        it.title.lowercase().contains(query) ||
-//                                it.description?.lowercase()?.contains(query) ?: false
-//                    }
-//                }
-//                return FilterResults().apply { values = filteredList }
-//            }
-//
-//            @Suppress("UNCHECKED_CAST")
-//            override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
-//                filteredCoffeeList = results?.values as? List<Coffee> ?: emptyList()
-//                notifyDataSetChanged()
-//            }
-//        }
-//    }

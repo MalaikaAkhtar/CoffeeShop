@@ -43,4 +43,5 @@
     <string name="rs">Rs.</string>
     <string name="_400">400</string>
     <string name="google_map_api_key">AIzaSyATfjKyOCEFbyjA16HU-s7Y3fvV1v9Tb7I</string>
+    <string name="no_results_found">no_text_found</string>
 </resources>

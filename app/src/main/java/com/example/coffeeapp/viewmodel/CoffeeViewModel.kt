@@ -25,7 +25,6 @@ class CoffeeViewModel : ViewModel() {
     private val _isLoading = MutableStateFlow(false)
     val isLoading: StateFlow<Boolean> get() = _isLoading
 
-
     init {
         getHotCoffee()
         getColdCoffee()

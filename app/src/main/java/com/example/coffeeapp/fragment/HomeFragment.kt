@@ -1,7 +1,5 @@
 package com.example.coffeeapp.fragment
 
-import android.annotation.SuppressLint
-import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -36,7 +34,6 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
-    @SuppressLint("RestrictedApi")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -51,8 +48,12 @@ class HomeFragment : Fragment() {
                 override fun onPageSelected(position: Int) {
                     super.onPageSelected(position)
                     when (position) {
-                        0 -> binding.radioGroupHome.check(R.id.rBHotCoffee)
-                        1 -> binding.radioGroupHome.check(R.id.rbColdCoffee)
+                        0 -> {
+                            binding.radioGroupHome.check(R.id.rBHotCoffee)
+                        }
+                        1 -> {
+                            binding.radioGroupHome.check(R.id.rbColdCoffee)
+                        }
                     }
                 }
             })
@@ -70,9 +71,6 @@ class HomeFragment : Fragment() {
                 }
             }
 
-            val searchAutoComplete = searchView.findViewById<SearchView.SearchAutoComplete>(androidx.appcompat.R.id.search_src_text)
-            searchAutoComplete.setHintTextColor(ContextCompat.getColor(requireContext(), R.color.white))
-            searchAutoComplete.setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
             searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
                 android.widget.SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
@@ -88,10 +86,17 @@ class HomeFragment : Fragment() {
 
             viewLifecycleOwner.lifecycleScope.launch {
                 coffeeViewModel.filterCoffeeList.collectLatest { filteredList ->
-                    coffeeAdapter.updateCoffeeList(filteredList)
+                   // coffeeAdapter.updateCoffeeList(filteredList)
+                    if (filteredList.isEmpty()) {
+                        binding.recyclerView.visibility = View.GONE
+                        binding.emptyStateTextView.visibility = View.VISIBLE
+                    } else {
+                        binding.recyclerView.visibility = View.VISIBLE
+                        binding.emptyStateTextView.visibility = View.GONE
+                        coffeeAdapter.updateCoffeeList(filteredList)
+                    }
                 }
             }
-
         }
     }
     private fun updateRadioButtonStyles(checkedId: Int) {

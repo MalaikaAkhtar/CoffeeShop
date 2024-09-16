@@ -29,13 +29,13 @@ class OrderFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-//        val args: OrderFragmentArgs by navArgs()
-//        val coffeeTitle = args.coffeeTitle
-//        val coffeeImage = args.coffeeImage
-//        coffeePrice = args.selectedPrice
+        val args: OrderFragmentArgs by navArgs()
+        val coffeeTitle = args.coffeeTitle
+        val coffeeImage = args.coffeeImage
+        coffeePrice = args.selectedPrice
 
         binding.apply {
-//            coffeeName.text = coffeeTitle
+            coffeeName.text = coffeeTitle
             feeValue.text= Constants.DELIVERY_FEE.toString()
             backImageView.setOnClickListener {
                 requireActivity().supportFragmentManager.popBackStack()
@@ -55,10 +55,10 @@ class OrderFragment : Fragment() {
                 findNavController().navigate(action)
             }
         }
-//        Glide.with(this)
-//            .load(coffeeImage)
-//            .into(binding.coffeeImage)
-//        setPrice(quantity)
+        Glide.with(this)
+            .load(coffeeImage)
+            .into(binding.coffeeImage)
+        setPrice(quantity)
     }
     private fun setPrice(itemQuantity: Int) {
         val totalPrice = (coffeePrice.toInt().times(itemQuantity))
