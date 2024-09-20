@@ -9,11 +9,13 @@ import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.example.coffeeapp.R
 import com.example.coffeeapp.adapter.CoffeeAdapter
 import com.example.coffeeapp.adapter.CoffeePagerAdapter
 import com.example.coffeeapp.databinding.FragmentHomeBinding
+import com.example.coffeeapp.dataclass.Coffee
 import com.example.coffeeapp.viewmodel.CoffeeViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -22,6 +24,7 @@ class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
     private val coffeeViewModel: CoffeeViewModel  by activityViewModels()
+    private var filterItemList = mutableListOf<Coffee>()
 
     private lateinit var coffeeAdapter: CoffeeAdapter
     private var isHotCoffeeSelected = true
@@ -41,7 +44,7 @@ class HomeFragment : Fragment() {
         coffeeAdapter = CoffeeAdapter(emptyList()) { coffee ->
 
         }
-        binding.recyclerView.adapter = coffeeAdapter
+//        binding.recyclerView.adapter = coffeeAdapter
         binding.apply {
             viewPager.adapter = coffeePagerAdapter
             viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
@@ -80,23 +83,24 @@ class HomeFragment : Fragment() {
                 override fun onQueryTextChange(newText: String?): Boolean {
                     val query = newText.orEmpty()
                     coffeeViewModel.filterCoffeeList(query, isHotCoffeeSelected)
-                    return true
-                }
-                })
+                    viewLifecycleOwner.lifecycleScope.launch {
+                        coffeeViewModel.filterCoffeeList.collectLatest { filteredList ->
+                            filterItemList.clear()
+                            filterItemList.addAll(filteredList)
+                            coffeeAdapter.updateCoffeeList(filterItemList)
 
-            viewLifecycleOwner.lifecycleScope.launch {
-                coffeeViewModel.filterCoffeeList.collectLatest { filteredList ->
-                   // coffeeAdapter.updateCoffeeList(filteredList)
-                    if (filteredList.isEmpty()) {
-                        binding.recyclerView.visibility = View.GONE
-                        binding.emptyStateTextView.visibility = View.VISIBLE
-                    } else {
-                        binding.recyclerView.visibility = View.VISIBLE
-                        binding.emptyStateTextView.visibility = View.GONE
-                        coffeeAdapter.updateCoffeeList(filteredList)
+//                            if (filteredList.isNotEmpty()) {
+//                                val bundle = Bundle().apply {
+//                                    putParcelableArrayList("filtered_coffees", ArrayList(filterItemList))
+//                                }
+//                                findNavController().navigate(R.id.action_homeFragment_to_hotCoffeeFragment, bundle)
+//                            }
+                        }
                     }
+                    return true
+                  }
                 }
-            }
+            )
         }
     }
     private fun updateRadioButtonStyles(checkedId: Int) {

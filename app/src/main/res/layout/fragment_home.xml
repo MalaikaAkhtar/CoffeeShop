@@ -67,16 +67,23 @@
 
     </LinearLayout>
 
-    <SearchView
-        android:id="@+id/searchView"
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/search_here"
-        android:iconifiedByDefault="false"
-        android:textColorHint="@color/white"
-        android:background="@color/black"
-        android:layout_marginHorizontal="@dimen/_20sdp"
-        android:layout_marginTop="@dimen/_120sdp"/>
+        android:layout_marginTop="@dimen/_120sdp"
+        app:cardCornerRadius="@dimen/_10sdp"
+        android:layout_marginHorizontal="@dimen/_20sdp">
+
+        <SearchView
+            android:id="@+id/searchView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/search_here"
+            android:iconifiedByDefault="false"
+            android:background="@color/blackGrey" />
+
+
+    </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
         android:layout_width="@dimen/_230sdp"
@@ -146,22 +153,22 @@
         android:layout_marginTop="@dimen/_20sdp"/>
 
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/_330sdp"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:spanCount="2"
-        tools:listitem="@layout/coffee_items" />
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:id="@+id/recyclerView"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="@dimen/_200sdp"-->
+<!--        android:layout_marginTop="@dimen/_330sdp"-->
+<!--        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"-->
+<!--        app:spanCount="2"-->
+<!--        tools:listitem="@layout/coffee_items" />-->
+
+
 
     <TextView
         android:id="@+id/emptyStateTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/no_results_found"
         android:layout_gravity="center"
-        android:visibility="gone"
-        android:textColor="@color/black"/>
+        android:visibility="gone" />
 
 </FrameLayout>

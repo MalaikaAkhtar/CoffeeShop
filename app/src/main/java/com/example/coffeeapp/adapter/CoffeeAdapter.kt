@@ -1,5 +1,6 @@
 package com.example.coffeeapp.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -40,6 +41,7 @@ class CoffeeAdapter(private var coffeeList: List<Coffee>,
 
     override fun getItemCount() = coffeeList.size
 
+    @SuppressLint("NotifyDataSetChanged")
     fun updateCoffeeList(newCoffeeList: List<Coffee>) {
         coffeeList = newCoffeeList
         notifyDataSetChanged()

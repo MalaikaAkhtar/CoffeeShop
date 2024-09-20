@@ -51,19 +51,15 @@ class ColdCoffeeFragment : Fragment() {
         }
 
         coffeeViewModel = ViewModelProvider(requireActivity())[CoffeeViewModel::class.java]
-        viewLifecycleOwner.lifecycleScope.launch {
-            coffeeViewModel.coldCoffeeList.collect { coldCoffeeList ->
-                coffeeAdapter.updateCoffeeList(coldCoffeeList)
-                binding.progressBar.visibility = View.GONE
-            }
+
+        coffeeViewModel.coldCoffeeList.observe(viewLifecycleOwner) { coldCoffeeList ->
+            coffeeAdapter.updateCoffeeList(coldCoffeeList)
+            binding.progressBar.visibility = View.GONE
         }
+
         viewLifecycleOwner.lifecycleScope.launch {
             coffeeViewModel.isLoading.collect { isLoading ->
-                if (isLoading) {
-                    binding.progressBar.visibility = View.VISIBLE
-                } else {
-                    binding.progressBar.visibility = View.GONE
-                }
+                binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
             }
         }
     }
