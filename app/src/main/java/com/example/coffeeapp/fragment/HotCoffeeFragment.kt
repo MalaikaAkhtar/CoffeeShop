@@ -41,7 +41,6 @@ class HotCoffeeFragment : Fragment() {
 
         coffeeAdapter = CoffeeAdapter(emptyList()) { selectedCoffee ->
             onClick.invoke(selectedCoffee)
-
         }
         binding.recyclerView.apply {
             layoutManager = GridLayoutManager(context, 2)
