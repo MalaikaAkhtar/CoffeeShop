@@ -89,12 +89,13 @@ class HomeFragment : Fragment() {
                             filterItemList.addAll(filteredList)
                             coffeeAdapter.updateCoffeeList(filterItemList)
 
-//                            if (filteredList.isNotEmpty()) {
-//                                val bundle = Bundle().apply {
-//                                    putParcelableArrayList("filtered_coffees", ArrayList(filterItemList))
-//                                }
-//                                findNavController().navigate(R.id.action_homeFragment_to_hotCoffeeFragment, bundle)
-//                            }
+                            if (filteredList.isNotEmpty()) {
+                                val bundle = Bundle().apply {
+                                    putParcelableArrayList("filtered_coffees", ArrayList(filterItemList))
+                                }
+                                findNavController().navigate(R.id.action_homeFragment_to_hotCoffeeFragment, bundle)
+                                findNavController().navigate(R.id.action_homeFragment_to_coldCoffeeFragment, bundle)
+                            }
                         }
                     }
                     return true

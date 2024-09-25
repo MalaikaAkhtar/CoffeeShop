@@ -162,13 +162,4 @@
 <!--        app:spanCount="2"-->
 <!--        tools:listitem="@layout/coffee_items" />-->
 
-
-
-    <TextView
-        android:id="@+id/emptyStateTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:visibility="gone" />
-
 </FrameLayout>

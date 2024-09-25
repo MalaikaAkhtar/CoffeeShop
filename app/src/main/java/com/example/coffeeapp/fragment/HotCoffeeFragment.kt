@@ -39,6 +39,9 @@ class HotCoffeeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val filteredCoffees: ArrayList<Coffee>? =
+            arguments?.getParcelableArrayList("filtered_coffees")
+
         coffeeAdapter = CoffeeAdapter(emptyList()) { selectedCoffee ->
             onClick.invoke(selectedCoffee)
         }
@@ -50,7 +53,11 @@ class HotCoffeeFragment : Fragment() {
         coffeeViewModel = ViewModelProvider(requireActivity())[CoffeeViewModel::class.java]
 
         coffeeViewModel.hotCoffeeList.observe(viewLifecycleOwner) { hotCoffeeList ->
-            coffeeAdapter.updateCoffeeList(hotCoffeeList)
+            if (!filteredCoffees.isNullOrEmpty()) {
+                coffeeAdapter.updateCoffeeList(filteredCoffees)
+            } else {
+                coffeeAdapter.updateCoffeeList(hotCoffeeList)
+            }
             binding.progressBar.visibility = View.GONE
         }
 
